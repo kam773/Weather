@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="section_names_array">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+
+
+    </string-array>
+
+    <string-array name="section_values_array">
+        <item>celsius</item>
+        <item>fahrenheit</item>
+
+
+    </string-array>
+
+
+</resources>

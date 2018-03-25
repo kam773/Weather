@@ -1,30 +1,36 @@
 package utils;
 
+import java.io.Serializable;
+
 /**
  * Created by Kamil on 2018-03-19.
  */
 
-public class Weather {
+public class Weather implements Serializable {
 
     private String maxTemp;
     private String minTemp;
-    private double humidity;
+    private int humidity;
     private String date;
-    private int year;
+    private int wind;
     private int day;
     private String weekday;
     private String url;
+    private String conditions;
+    private String windDir;
 
-
-    public Weather(String maxTemp, String minTemp, double humidity, String date, String url, int year, int day, String weekday) {
+    public Weather(String maxTemp, String minTemp, int humidity, String date,
+                   int wind, int day, String weekday, String url, String conditions, String windDir) {
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
         this.humidity = humidity;
         this.date = date;
+        this.wind = wind;
         this.day = day;
-        this.year = year;
         this.weekday = weekday;
         this.url = url;
+        this.conditions = conditions;
+        this.windDir = windDir;
     }
 
     public String getMaxTemp() {
@@ -35,30 +41,37 @@ public class Weather {
         return minTemp;
     }
 
-    public double getHumidity() {
+    public int getHumidity() {
         return humidity;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getDay() {
-        return day;
     }
 
     public String getDate() {
         return date;
     }
 
-    public String getUrl() {
-        return url;
+    public int getWind() {
+        return wind;
+    }
+
+    public int getDay() {
+        return day;
     }
 
     public String getWeekday() {
         return weekday;
     }
-}
 
+    public String getUrl() {
+        return url;
+    }
+
+    public String getConditions() {
+        return conditions;
+    }
+
+    public String getWindDir() {
+        return windDir;
+    }
+}
 
 

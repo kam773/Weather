@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private TextView mEmptyState;
     private WeatherAdapter mAdapter;
 
+    private static final String FORECAST_SHARE_HASHTAG = " #WeatherApp";
+    private String mForecast;
+
+
     private static final String BASE_URL =
             "http://api.wunderground.com/api/771028ced1c5c1b6/forecast10day/q/GB/London.json";
 
@@ -48,16 +53,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         listView.setAdapter(mAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                startActivity(intent);
-
-
-
-            }
-        });
 
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -86,24 +81,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.forecast, menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-
-            return true;
-        }
-
         if (id == R.id.action_map) {
             openLocationInMap();
+            return true;
+        }
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
             return true;
         }
 
@@ -119,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<List<Weather>> loader, List<Weather> weathers) {
         View loadingIndicator = findViewById(R.id.pb_loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
-        mEmptyState.setText(R.string.no_weather);
 
         mAdapter.clear();
 
@@ -134,4 +127,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<Weather>> loader) {
         mAdapter.clear();
     }
+
+    
 }

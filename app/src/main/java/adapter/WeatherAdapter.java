@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.kamil.weather.MainActivity;
 import com.example.kamil.weather.R;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,7 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
 
     public WeatherAdapter(Context context, ArrayList<Weather> weather) {
         super(context, 0, weather);
+
     }
 
 
@@ -57,12 +59,19 @@ public class WeatherAdapter extends ArrayAdapter<Weather> {
         TextView weekday = (TextView) listItemView.findViewById(R.id.weekday);
         weekday.setText(String.valueOf(currentWeather.getWeekday()));
 
-        TextView year = (TextView) listItemView.findViewById(R.id.year);
-        year.setText(String.valueOf(currentWeather.getYear()));
+        TextView conditions = (TextView) listItemView.findViewById(R.id.conditions);
+        conditions.setText(currentWeather.getConditions());
+
+        TextView humidity = (TextView) listItemView.findViewById(R.id.humidity);
+        humidity.setText(String.valueOf(currentWeather.getHumidity()) + " %");
+
+        TextView wind = (TextView) listItemView.findViewById(R.id.wind);
+        wind.setText(String.valueOf(currentWeather.getWind() + " kph"));
+
+        TextView windDir = (TextView) listItemView.findViewById(R.id.windDir);
+        windDir.setText(String.valueOf(currentWeather.getWindDir()));
 
         return listItemView;
     }
-
-
 
 }

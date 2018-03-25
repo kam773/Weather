@@ -132,7 +132,9 @@ public class WeatherUtils {
 
                 String iconUrl = currentWeather.getString("icon_url");
 
-                double humidity = currentWeather.getDouble("avehumidity");
+                String conditions = currentWeather.getString("conditions");
+
+                int humidity = currentWeather.getInt("avehumidity");
 
                 JSONObject highTempObject = currentWeather.getJSONObject("high");
                 String maxTemp = highTempObject.getString("celsius");
@@ -140,15 +142,18 @@ public class WeatherUtils {
                 JSONObject lowTempObject = currentWeather.getJSONObject("low");
                 String minTemp = lowTempObject.getString("celsius");
 
+                JSONObject aveWind = currentWeather.getJSONObject("avewind");
+                int wind = aveWind.getInt("kph");
+                String direction = aveWind.getString("dir");
 
                 JSONObject dateObject = currentWeather.getJSONObject("date");
                 String date = dateObject.getString("monthname");
                 String weekday = dateObject.getString("weekday");
                 int day = dateObject.getInt("day");
-                int year = dateObject.getInt("year");
 
 
-                Weather data = new Weather(maxTemp, minTemp, humidity, date, iconUrl, year, day, weekday);
+                Weather data = new Weather(maxTemp, minTemp, humidity, date,
+                        wind, day, weekday, iconUrl, conditions, direction);
                 weather.add(data);
 
             }
