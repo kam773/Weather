@@ -10,6 +10,7 @@ Personal project used to practice android development skills.
 * CardView
 * PreferenceFragment
 * AsyncTask Loader
+* Implicit map intent
 * UI tests 
 # Libraries:
 * Picasso
